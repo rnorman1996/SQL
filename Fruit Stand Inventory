@@ -1,0 +1,28 @@
+--create a fruit stand inventory
+
+CREATE TABLE inventory (item TEXT, price INTEGER, quantity INTEGER, id INTEGER PRIMARY KEY, item_code INTEGER);
+
+INSERT INTO inventory VALUES ("bananas", 4.99, 5, 1, 4388);
+INSERT INTO inventory VALUES ("apples", 2.99, 10, 2, 4390);
+INSERT INTO inventory VALUES ("oranges", 2.99, 7, 3, 4377);
+INSERT INTO inventory VALUES ("pineapples", 3.99, 4, 4, 4368);
+INSERT INTO inventory VALUES ("mangos", 4.99, 8, 5, 4399);
+INSERT INTO inventory VALUES ("celery", 1.99, 12, 6, 4314);
+INSERT INTO inventory VALUES ("carrots", 5.99, 2, 7, 4326);
+INSERT INTO inventory VALUES ("squash", 3.99, 3, 8, 4398);
+INSERT INTO inventory VALUES ("lemons", 2.99, 5, 9, 4378);
+INSERT INTO inventory VALUES ("limes", 2.99, 8, 10, 4379);
+INSERT INTO inventory VALUES ("grapefruit", 7.99, 2, 11, 4380);
+INSERT INTO inventory VALUES ("dragonfruit", 8.99, 1, 12, 4399);
+INSERT INTO inventory VALUES ("tomatoes", 2.99, 5, 13, 4343);
+INSERT INTO inventory VALUES ("lettuce", 1.99, 6, 14, 4300);
+INSERT INTO inventory VALUES ("spinach", 1.99, 7, 15, 4301);
+
+--display the database ordered by price.
+SELECT * FROM inventory ORDER BY price;
+
+--show the total amount of items in inventory
+SELECT SUM(quantity) FROM inventory;
+
+--show the items with less than a certain amount in inventory
+SELECT * FROM inventory WHERE quantity <5;
