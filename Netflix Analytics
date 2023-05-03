@@ -1,0 +1,34 @@
+--In this code, I'm querying Netflix data in a database to answer a series of questions.
+
+--How many movies are in the database?
+
+SELECT COUNT(*) 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" 
+WHERE "type"='Movie';
+
+--When was the most recent batch of movies and TV shows added?
+
+SELECT max(date(date_added))
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+
+--List all movies and shows in alphabetical order
+
+SELECT title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+ORDER BY title asc;
+
+--Who was the director for the movie 'Bright Star'?
+
+SELECT titles.title, people.director
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
+LEFT JOIN "CharlotteChaze/BreakIntoTech"."netflix_people" people
+ON titles.show_id=people.show_id
+WHERE "title"='Bright Star';
+
+--What is the oldest movie in the database and what year was it made?
+
+SELECT title
+, release_year
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+ORDER BY release_year asc
+LIMIT 1;
