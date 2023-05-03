@@ -78,3 +78,17 @@ WHERE track_id IN (
   FROM Spotifydata
   ORDER BY popularity DESC
   LIMIT 10); 
+
+--Tag all artists with an average popularity of 90 or above as a "Top Star".
+
+WITH tempTable AS (
+    SELECT AVG(popularity) AS popularity, artist_name
+    FROM Spotifydata
+    GROUP BY artist_name)
+    
+SELECT artist_name, popularity, 'Top Star' AS tag
+FROM tempTable
+WHERE popularity >=90
+;
+
+
