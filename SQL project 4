@@ -1,0 +1,49 @@
+-- In this code, I'm running queries to find out information about the data within the example database.
+
+-- How many orders were placed in January?
+SELECT COUNT(orderID)
+FROM BIT_DB.JanSales
+WHERE length(orderID)=6
+AND orderID <> 'Order ID';
+
+--How many of those orders where for an iPhone?
+SELECT COUNT(product)
+FROM BIT_DB.JanSales
+WHERE Product LIKE '%iphone%';
+
+--Select the customer account numbers for all orders placed in February.
+SELECT distinct acctnum
+FROM customers
+LEFT JOIN FebSales
+ON customers.order_id=FebSales.orderID
+WHERE length(orderid) = 6 
+AND orderid <> 'Order ID';
+
+
+--Which product was the cheapest one sold in January and what was the price?
+SELECT product, price
+FROM JanSales
+ORDER BY price asc
+LIMIT 1;
+
+
+--What is the total revenue for each product sold in January?
+SELECT Product, SUM(quantity)*price AS revenue
+FROM JanSales
+GROUP BY Product;
+
+--Which products sold in February at 548 Lincoln St, how many of each were sold, and what was the total revenue?
+SELECT Product, Quantity, location, SUM(quantity)*price AS revenue
+FROM FebSales
+WHERE location='548 Lincoln St, Seattle, WA 98101'
+GROUP BY Product;
+
+--How many customers ordered more than 2 items at a time in February and what was the average amount spent?
+SELECT COUNT (distinct acctnum),
+AVG (FebSales.quantity*price)
+FROM customers
+JOIN FebSales
+ON customers.order_id=FebSales.orderID
+WHERE FebSales.Quantity >2
+AND length(order_id)=6
+AND order_ID <> 'Order ID';
