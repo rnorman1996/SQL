@@ -1,4 +1,4 @@
---In this repository, I am querying a database with 11 tables and using multiple functions to demonstrate knowledge of SQL functions with 24 different questions.
+--In this code, I am querying a database with 11 tables and using multiple functions to demonstrate knowledge of SQL functions with 24 different questions.
 
 
 --Show Customers (their full names, customer ID, and country) who are not in the US.
